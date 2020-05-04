@@ -10,13 +10,13 @@
 		
 		/*** for registration process ***/
 		
-		public function reg_user($name,$username,$password,$email){
+		public function reg_user($first_name,$last_name,$username,$password,$email){
 			//echo "k";
 			
 			$password = md5($password);
 
 			//checking if the username or email is available in db
-			$query = "SELECT * FROM users WHERE username='' OR email='$email'";
+			$query = "SELECT * FROM users WHERE username='$username' OR email='$email'";
 			
 			$result = $this->db->query($query) or die($this->db->error);
 			
@@ -27,7 +27,7 @@
 			//if the username is not in db then insert to the table
 			
 			if($count_row == 0){
-				$query = "INSERT INTO users SET username='$username', password='$password', first_name='$name', last_name='$name', email='$email', role='admin', status=$status";
+				$query = "INSERT INTO users SET username='$username', password='$password', first_name='$first_name', last_name='$last_name', email='$email', role='admin', status=$status";
 				
 				$result = $this->db->query($query) or die($this->db->error);
 				
@@ -64,12 +64,12 @@
 	
 	
 	public function get_fullname($uid){
-		$query = "SELECT first_name FROM users WHERE id = $uid";
+		$query = "SELECT first_name, last_name FROM users WHERE id = $uid";
 		
 		$result = $this->db->query($query) or die($this->db->error);
 		
 		$user_data = $result->fetch_array(MYSQLI_ASSOC);
-		echo $user_data['first_name'];
+		echo $user_data['first_name'] . ' ' . $user_data['last_name'];
 		
 	}
 	
@@ -85,10 +85,5 @@
 	    }
 	
 	
-	
-	
-	
-	
-	
-	
-	
+}
+?>

@@ -20,13 +20,13 @@ session_start();
   <head>
     <meta charset="utf-8">
     <title>Home</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <?php include_once('./components/base/stylesheets.html') ?>
   </head>
 
   <body>
     <div id="container" class="container">
       <div id="header">
-        <a href="home.php?q=logout">LOGOUT</a>
+        <a href="index.php?q=logout">LOGOUT</a>
       </div>
       <div id="main-body">
         <br/>
