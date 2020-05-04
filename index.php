@@ -14,31 +14,78 @@ session_start();
         header("location:login.php");
     }
 ?>
-  <!DOCTYPE html>
-  <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <title>Home</title>
-    <?php include_once('./components/base/stylesheets.html') ?>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>OTC - Home</title>
+  <?php include_once('./components/base/stylesheets.php') ?>
+</head>
 
-  <body>
-    <div id="container" class="container">
-      <div id="header">
-        <a href="index.php?q=logout">LOGOUT</a>
+<body>
+  <header class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <a class="navbar-brand" href="./index.php">OTC</a>
+      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownId">
+              <a class="dropdown-item" href="#">Action 1</a>
+              <a class="dropdown-item" href="#">Action 2</a>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownId1" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">Hello <?php $user->get_fullname($uid); ?></a>
+            <div class="dropdown-menu" aria-labelledby="dropdownId1">
+              <a class="dropdown-item" href="index.php?q=logout">Logout</a>
+              <a class="dropdown-item" href="#">Action 2</a>
+            </div>
+          </li>
+        </ul>
+
       </div>
-      <div id="main-body">
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <h1>
-                  Hello <?php $user->get_fullname($uid); ?>
-    			</h1>
+    </nav>
+  </header>
+  <br>
+  <section class="container">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-columns">
+          <div class="card">
+            <img class="card-img-top" src="holder.js/100x180/" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Title</h4>
+              <p class="card-text">Text</p>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="holder.js/100x180/" alt="">
+            <div class="card-body">
+              <h4 class="card-title">Title</h4>
+              <p class="card-text">Text</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div id="footer"></div>
     </div>
-  </body>
+  </section>
 
-  </html>
+
+  <?php include_once('./components/base/scripts.php') ?>
+
+</body>
+
+</html>

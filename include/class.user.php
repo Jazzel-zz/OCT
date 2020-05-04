@@ -43,7 +43,7 @@
 		public function check_login($emailusername, $password){
         $password = md5($password);
 		
-		$query = "SELECT id from users WHERE username='' or email='$emailusername' and password='$password'";
+		$query = "SELECT id from users WHERE email='$emailusername' and password='$password'";
 		
 		$result = $this->db->query($query) or die($this->db->error);
 

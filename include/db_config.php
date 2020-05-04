@@ -2,7 +2,7 @@
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
-define('DB_DATABASE', 'PHPLearning');
+define('DB_DATABASE', 'OST');
 
 class DB_con {
 	public $connection;
