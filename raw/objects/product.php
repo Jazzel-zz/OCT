@@ -1,10 +1,9 @@
 <?php
-// 'product' object
 class Product{
  
     // database connection and table name
     private $conn;
-    private $table_name="products";
+    private $table_name = "products";
  
     // object properties
     public $id;
@@ -12,121 +11,22 @@ class Product{
     public $price;
     public $description;
     public $category_id;
-    public $category_name;
-    public $timestamp;
+    public $user_id;
+    public $discount_price;
+    public $image;
  
-    // constructor
     public function __construct($db){
         $this->conn = $db;
     }
-
-    // read all products
-function read($from_record_num, $records_per_page){
  
-    // select all products query
-    $query = "SELECT
-                id, name, description, price 
-            FROM
-                " . $this->table_name . "
-            ORDER BY
-                created DESC
-            LIMIT
-                ?, ?";
- 
-    // prepare query statement
-    $stmt = $this->conn->prepare( $query );
- 
-    // bind limit clause variables
-    $stmt->bindParam(1, $from_record_num, PDO::PARAM_INT);
-    $stmt->bindParam(2, $records_per_page, PDO::PARAM_INT);
- 
-    // execute query
-    $stmt->execute();
- 
-    // return values
-    return $stmt;
-}
- 
-// used for paging products
-public function count(){
- 
-    // query to count all product records
-    $query = "SELECT count(*) FROM " . $this->table_name;
- 
-    // prepare query statement
-    $stmt = $this->conn->prepare( $query );
- 
-    // execute query
-    $stmt->execute();
- 
-    // get row value
-    $rows = $stmt->fetch(PDO::FETCH_NUM);
- 
-    // return count
-    return $rows[0];
-}
-
-// read all product based on product ids included in the $ids variable
-// reference http://stackoverflow.com/a/10722827/827418
-public function readByIds($ids){
- 
-    $ids_arr = str_repeat('?,', count($ids) - 1) . '?';
- 
-    // query to select products
-    $query = "SELECT id, name, price FROM " . $this->table_name . " WHERE id IN ({$ids_arr}) ORDER BY name";
- 
-    // prepare query statement
-    $stmt = $this->conn->prepare($query);
- 
-    // execute query
-    $stmt->execute($ids);
- 
-    // return values from database
-    return $stmt;
-}
-
-// used when filling up the update product form
-function readOne(){
- 
-    // query to select single record
-    $query = "SELECT
-                name, description, price
-            FROM
-                " . $this->table_name . "
-            WHERE
-                id = ?
-            LIMIT
-                0,1";
- 
-    // prepare query statement
-    $stmt = $this->conn->prepare( $query );
- 
-    // sanitize
-    $this->id=htmlspecialchars(strip_tags($this->id));
- 
-    // bind product id value
-    $stmt->bindParam(1, $this->id);
- 
-    // execute query
-    $stmt->execute();
- 
-    // get row values
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
- 
-    // assign retrieved row value to object properties
-    $this->name = $row['name'];
-    $this->description = $row['description'];
-    $this->price = $row['price'];
-}
-
- // create product
+    // create product
     function create(){
  
         //write query
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    name=:name, price=:price, description=:description";
+                    title=:name, price=:price, discount_price=:discount_price, image=:image,  description=:description, category_id=:category_id, added_by=:user_id";
  
         $stmt = $this->conn->prepare($query);
  
@@ -134,8 +34,9 @@ function readOne(){
         $this->name=htmlspecialchars(strip_tags($this->name));
         $this->price=htmlspecialchars(strip_tags($this->price));
         $this->description=htmlspecialchars(strip_tags($this->description));
-        // $this->category_id=htmlspecialchars(strip_tags($this->category_id));
-        // $this->image=htmlspecialchars(strip_tags($this->image));
+        $this->category_id=htmlspecialchars(strip_tags($this->category_id));
+        $this->discount_price=htmlspecialchars(strip_tags($this->discount_price));
+        $this->image=htmlspecialchars(strip_tags($this->image));
 
  
         $this->user_id = 2;
@@ -144,9 +45,10 @@ function readOne(){
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":price", $this->price);
         $stmt->bindParam(":description", $this->description);
-        // $stmt->bindParam(":category_id", $this->category_id);
-        // $stmt->bindParam(":user_id", $this->user_id);
-        // $stmt->bindParam(":image", $this->image);
+        $stmt->bindParam(":category_id", $this->category_id);
+        $stmt->bindParam(":discount_price", $this->discount_price);
+        $stmt->bindParam(":user_id", $this->user_id);
+        $stmt->bindParam(":image", $this->image);
 
  
         if($stmt->execute()){
@@ -156,14 +58,15 @@ function readOne(){
         }
  
     }
- function readAll($from_record_num, $records_per_page){
+
+    function readAll($from_record_num, $records_per_page){
  
     $query = "SELECT
-                id, name, description, price, created, category_id
+                id, title, description, price, discount_price, category_id
             FROM
                 " . $this->table_name . "
             ORDER BY
-                name ASC
+                title ASC
             LIMIT
                 {$from_record_num}, {$records_per_page}";
  
@@ -186,10 +89,10 @@ public function countAll(){
     return $num;
 }
 
-function readOneToUpdate(){
+function readOne(){
  
     $query = "SELECT
-                name, description, price, created, category_id
+                title, price, discount_price, description, category_id, image
             FROM
                 " . $this->table_name . "
             WHERE
@@ -203,11 +106,12 @@ function readOneToUpdate(){
  
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
  
-    $this->name = $row['name'];
+    $this->name = $row['title'];
     $this->price = $row['price'];
+    $this->discount_price = $row['discount_price'];
     $this->description = $row['description'];
     $this->category_id = $row['category_id'];
-    // $this->image = $row['image'];
+    $this->image = $row['image'];
 }
 
 function update(){
@@ -215,8 +119,9 @@ function update(){
     $query = "UPDATE
                 " . $this->table_name . "
             SET
-                name = :name,
+                title = :name,
                 price = :price,
+                discount_price = :discount_price,
                 description = :description,
                 category_id  = :category_id
             WHERE
@@ -229,6 +134,7 @@ function update(){
     $this->price=htmlspecialchars(strip_tags($this->price));
     $this->description=htmlspecialchars(strip_tags($this->description));
     $this->category_id=htmlspecialchars(strip_tags($this->category_id));
+    $this->discount_price=htmlspecialchars(strip_tags($this->discount_price));
     $this->id=htmlspecialchars(strip_tags($this->id));
  
     // bind parameters
@@ -236,6 +142,7 @@ function update(){
     $stmt->bindParam(':price', $this->price);
     $stmt->bindParam(':description', $this->description);
     $stmt->bindParam(':category_id', $this->category_id);
+    $stmt->bindParam(':discount_price', $this->discount_price);
     $stmt->bindParam(':id', $this->id);
  
     // execute the query
@@ -267,16 +174,16 @@ public function search($search_term, $from_record_num, $records_per_page){
  
     // select query
     $query = "SELECT
-                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+                c.name as category_name, p.id, p.title, p.description, p.price, p.discount_price, p.category_id, p.created_at
             FROM
                 " . $this->table_name . " p
                 LEFT JOIN
                     categories c
                         ON p.category_id = c.id
             WHERE
-                p.name LIKE ? OR p.description LIKE ?
+                p.title LIKE ? OR p.description LIKE ?
             ORDER BY
-                p.name ASC
+                p.title ASC
             LIMIT
                 ?, ?";
  
@@ -305,7 +212,7 @@ public function countAll_BySearch($search_term){
             FROM
                 " . $this->table_name . " p 
             WHERE
-                p.name LIKE ? OR p.description LIKE ?";
+                p.title LIKE ? OR p.description LIKE ?";
  
     // prepare query statement
     $stmt = $this->conn->prepare( $query );
@@ -392,7 +299,5 @@ else{
     return $result_message;
 }
 
-
 }
-
 ?>

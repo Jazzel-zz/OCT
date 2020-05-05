@@ -24,6 +24,7 @@ if($total_rows>0){
         echo "<tr>";
             echo "<th>Product</th>";
             echo "<th>Price</th>";
+            echo "<th>Discount Price</th>";
             echo "<th>Description</th>";
             echo "<th>Category</th>";
             echo "<th>Actions</th>";
@@ -34,8 +35,9 @@ if($total_rows>0){
             extract($row);
  
             echo "<tr>";
-                echo "<td>{$name}</td>";
+                echo "<td>{$title}</td>";
                 echo "<td>{$price}</td>";
+                echo "<td>{$discount_price}</td>";
                 echo "<td>{$description}</td>";
                 echo "<td>";
                     $category->id = $category_id;
@@ -70,7 +72,7 @@ if($total_rows>0){
     echo "</table>";
  
     // paging buttons
-    include_once 'dashboard_paging.php';
+    include_once 'paging.php';
 }
  
 // tell the user there are no products

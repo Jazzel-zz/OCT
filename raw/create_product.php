@@ -14,7 +14,7 @@ $product = new Product($db);
 $category = new Category($db);
 // set page headers
 $page_title = "Create Product";
-include_once "layout_header.php";
+include_once "header.php";
 
  echo "<div class='right-button-margin'>";
     echo "<a href='index.php' class='btn btn-primary pull-right'>";
@@ -38,10 +38,11 @@ if($_POST){
     $product->name = $_POST['name'];
     $product->price = $_POST['price'];
     $product->description = $_POST['description'];
-    // $product->category_id = $_POST['category_id'];
-    // $image=!empty($_FILES["image"]["name"])
-    //     ? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES["image"]["name"]) : "";
-    // $product->image = $image;
+    $product->category_id = $_POST['category_id'];
+    $product->discount_price = $_POST['discount_price'];
+    $image=!empty($_FILES["image"]["name"])
+        ? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES["image"]["name"]) : "";
+    $product->image = $image;
  
     // create the product
     if($product->create()){
@@ -121,5 +122,5 @@ echo "</select>";
 </form>
 <?php
 // footer
-include_once "layout_footer.php";
+include_once "footer.php";
 ?>

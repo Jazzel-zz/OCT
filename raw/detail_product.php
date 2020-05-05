@@ -19,7 +19,7 @@ $category = new Category($db);
 $product->id = $id;
  
 // read the details of product to be read
-$product->readOneToUpdate();
+$product->readOne();
 // set page headers
 $page_title = "Product Details";
 include_once "header.php";

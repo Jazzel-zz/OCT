@@ -39,6 +39,7 @@ function readName(){
     $stmt->execute();
  
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
+     
     $this->name = $row['name'];
 }
  
