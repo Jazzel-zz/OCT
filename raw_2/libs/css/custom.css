@@ -1,0 +1,33 @@
+
+    margin: 0 0 5px 0;
+}
+ 
+.blueimp-gallery>.prev, .blueimp-gallery>.next{ border:none; }
+ 
+.update-quantity-form {
+    width: 150px;
+    float: left;
+    margin: 0 10px 0 0;
+}
+ 
+.cart-row {
+    border-bottom: thin solid #f1f1f1;
+    overflow: hidden;
+    width: 100%;
+    padding: 20px 0 20px 0;
+}
+ 
+.product-link{
+    color:#000000;
+}
+ 
+.product-link:hover{
+    color:#000000;
+    text-decoration:none;
+}
+ 
+.product-img-thumb {
+    margin: 0 0 10px 0;
+    width: 100%;
+    cursor: pointer;
+}

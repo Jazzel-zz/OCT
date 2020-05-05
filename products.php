@@ -1,7 +1,9 @@
 <?php
 // core.php holds pagination variables
 include_once 'config/core.php';
+$page_title = "Products";
  
+
 // include database and object files
 include_once 'config/database.php';
 include_once 'objects/product.php';
@@ -15,7 +17,6 @@ $db = $database->getConnection();
 $product = new Product($db);
 $category = new Category($db);
  
-$page_title = "Read Products";
 include_once "header.php";
 ?>
 
@@ -23,9 +24,10 @@ include_once "header.php";
     if(isset($_SESSION)){
         include_once 'authentication.php';
     };
+
 ?> 
 
-<a class="dropdown-item" href="index.php?q=logout">Logout</a>
+<!-- <a class="dropdown-item" href="products.php?q=logout">Logout</a> -->
 <?php
 
 // query products
@@ -36,10 +38,11 @@ $page_url = "products.php?";
  
 // count total rows - used for pagination
 $total_rows=$product->countAll();
- 
 // read_template.php controls how the product list will be rendered
+echo ('<div class="content"><div class="row"><div class="col-12"><div class="card card-chart"><div class="card-header">');
 include_once "read_template.php";
- 
+echo('</div></div></div></div></div>');
+
 // layout_footer.php holds our javascript and closing html tags
 include_once "footer.php";
 

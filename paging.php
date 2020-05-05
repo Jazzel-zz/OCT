@@ -5,7 +5,7 @@ echo "<div class='col-md-12'>";
  
     // button for first page
     if($page>1){
-        echo "<li><a href='{$page_url}' title='Go to the first page.'>";
+        echo "<li class="page-item"><a  class='page-link' href='{$page_url}' title='Go to the first page.'>";
             echo "First Page";
         echo "</a></li>";
     }
@@ -26,20 +26,20 @@ echo "<div class='col-md-12'>";
  
             // current page
             if ($x == $page) {
-                echo "<li class='active'><a href=\"#\">$x <span class=\"sr-only\">(current)</span></a></li>";
+                echo "<li class='page-item active'><a  class='page-link' href=\"#\">$x <span class=\"sr-only\">(current)</span></a></li>";
             }
  
             // not current page
             else {
-                echo "<li><a href='{$page_url}page=$x'>$x</a></li>";
+                echo "<li class="page-item"><a  class='page-link' href='{$page_url}page=$x'>$x</a></li>";
             }
         }
     }
  
     // button for last page
     if($page<$total_pages){
-        echo "<li>";
-            echo "<a href='" . $page_url . "page={$total_pages}' title='Last page is {$total_pages}.'>";
+        echo "<li class='page-item'>";
+            echo "<a class='page-link' href='" . $page_url . "page={$total_pages}' title='Last page is {$total_pages}.'>";
                 echo "Last Page";
             echo "</a>";
         echo "</li>";

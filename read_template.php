@@ -1,30 +1,34 @@
 <?php
+
+ 
+
 // search form
-echo "<form role='search' action='search.php'>";
-    echo "<div class='input-group col-md-3 pull-left margin-right-1em'>";
-        $search_value=isset($search_term) ? "value='{$search_term}'" : "";
-        echo "<input type='text' class='form-control' placeholder='Type product name or description...' name='s' id='srch-term' required {$search_value} />";
-        echo "<div class='input-group-btn'>";
-            echo "<button class='btn btn-primary' type='submit'><i class='glyphicon glyphicon-search'></i></button>";
+        echo ('<div class="row pt-3 pl-3"><div class="col-3">');
+        echo('<div class="h1 text-white styled-font">'.$page_title.'</div>');
+        echo ('</div>');
+        echo ('<div class="col">');
+        echo "<form role='search' class='form-inline pull-right' action='search.php'>";
+        echo('<div class="input-group mb-2 mr-sm-2">');
+        echo('<a href="create_product.php" type="submit" class="btn btn-md btn-primary mb-2"><i class="fa fa-plus"></i></a>');
         echo "</div>";
-    echo "</div>";
-echo "</form>";
- 
-// create product button
-echo "<div class='right-button-margin'>";
-    echo "<a href='create_product.php' class='btn btn-primary pull-right'>";
-        echo "<span class='glyphicon glyphicon-plus'></span> Create Product";
-    echo "</a>";
-echo "</div>";
- 
+        $search_value=isset($search_term) ? "value='{$search_term}'" : "";
+        echo('<div class="input-group mb-2 mr-sm-2">');
+        echo('<div class="input-group-prepend"><button type="submit" class="btn btn-md btn-primary mb-2"><i class="fa fa-search"></i></button></div>');
+        echo "<input type='text' class='form-control mt-1' name='s' id='srch-term' placeholder='Type product name or description...' required {$search_value} />";
+        echo "</div>";
+        echo "</form>";
+        echo "</div>";
+        echo "</div>";
+
+
+
 // display the products if there are any
 if($total_rows>0){
  
-    echo "<table class='table table-hover table-responsive table-bordered'>";
-        echo "<tr>";
+    echo "<table class='table table-hover table-striped'>";
+        echo "<tr style='color:white !important;'>";
             echo "<th>Product</th>";
             echo "<th>Price</th>";
-            echo "<th>Description</th>";
             echo "<th>Category</th>";
             echo "<th>Actions</th>";
         echo "</tr>";
@@ -36,28 +40,27 @@ if($total_rows>0){
             echo "<tr>";
                 echo "<td>{$name}</td>";
                 echo "<td>{$price}</td>";
-                echo "<td>{$description}</td>";
                 echo "<td>";
                     $category->id = $category_id;
                     $category->readName();
                     echo $category->name;
                 echo "</td>";
                 
- 
-                echo "<td>";
- 
-                    // read product button
-                    echo "<a href='detail_product.php?id={$id}' class='btn btn-primary left-margin'>";
-                        echo "<span class='glyphicon glyphicon-list'></span> Read";
+    
+                    echo "<td>";
+    
+                        // read product button
+                        echo "<a href='detail_product.php?id={$id}' class='mr-1 btn btn-primary left-margin'>";
+                            echo "<span class='glyphicon glyphicon-list'></span> Read";
                     echo "</a>";
  
                     // edit product button
-                    echo "<a href='update_product.php?id={$id}' class='btn btn-info left-margin'>";
+                    echo "<a href='update_product.php?id={$id}' class='ml-1 mr-1 btn btn-info left-margin'>";
                         echo "<span class='glyphicon glyphicon-edit'></span> Edit";
                     echo "</a>";
  
                     // delete product button
-                    echo "<a delete-id='{$id}' class='btn btn-danger delete-object'>";
+                    echo "<a delete-id='{$id}' class='ml-1 mr-1 btn btn-danger delete-object'>";
                         echo "<span class='glyphicon glyphicon-remove'></span> Delete";
                     echo "</a>";
  

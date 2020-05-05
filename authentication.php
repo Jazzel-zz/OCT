@@ -5,10 +5,12 @@ $user = new User($db);
 
     if (isset($_GET['q'])){
         $user->user_logout();
-        header('location:login.php');
+        echo("<script>location.href = 'index.php';</script>");
     }
 
     if(!isset($_SESSION['login'])){
-        header('location:login.php');
+        // header('location:index.php');
+        echo("<script>location.href = 'index.php';</script>");
+
     }
 ?>

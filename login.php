@@ -38,7 +38,8 @@ if($stmt->rowCount() > 0){
         "id" => $row['id'],
         "username" => $row['username']
     );
-	       header("location:index.php");
+        echo("<script>location.href = 'dashboard.php';</script>");
+           
 
 }
 else{

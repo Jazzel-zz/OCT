@@ -29,7 +29,7 @@ $from_record_num = ($records_per_page * $page) - $records_per_page; // calculate
 $page_title="Products";
  
 // page header html
-include 'layout_header.php';
+include_once 'layout_header.php';
 
 echo "<div class='col-md-12'>";
     if($action=='added'){
@@ -71,5 +71,5 @@ else{
 // contents will be here 
  
 // layout footer code
-include 'layout_footer.php';
+include_once 'layout_footer.php';
 ?>
