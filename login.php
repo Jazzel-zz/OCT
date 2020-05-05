@@ -1,19 +1,55 @@
-<?php 
-session_start();
-include_once 'include/class.user.php';
-$user = new User();
+<?php
 
-if (isset($_POST['submit'])) { 
-		extract($_POST);   
-	    $login = $user->check_login($emailusername, $password);
-	    if ($login) {
-	        // Registration Success
+// include database and object files
+include_once 'config/database.php';
+include_once 'objects/user.php';
+ 
+// get database connection
+$database = new Database();
+$db = $database->getConnection();
+ 
+// pass connection to objects
+$user = new User($db);
+
+// set page headers
+$page_title = "Login";
+include_once "header.php";
+ 
+?>
+<?php
+if($_POST){
+
+// set ID property of user to be edited
+$user->username = isset($_POST['username']) ? $_POST['username'] : die();
+$user->password = isset($_POST['password']) ? $_POST['password'] : die();
+// read the details of user to be edited
+$stmt = $user->login();
+if($stmt->rowCount() > 0){
+    // get retrieved row
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    // storing data in sesstion
+    $_SESSION['login'] = true; 
+	$_SESSION['user_id'] = $row['id'];
+    
+    // create array
+    $user_arr=array(
+        "status" => true,
+        "message" => "Successfully Login!",
+        "id" => $row['id'],
+        "username" => $row['username']
+    );
 	       header("location:index.php");
-	    } else {
-	        // Registration Failed
-	        echo 'Wrong username or password';
-	    }
-	}
+
+}
+else{
+    $user_arr=array(
+        "status" => false,
+        "message" => "Invalid Username or Password!",
+    );
+}
+// make it json format
+print_r(json_encode($user_arr));
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,8 +60,6 @@ if (isset($_POST['submit'])) {
     <title>OCT - Login</title>
 <link rel="stylesheet" href="assets/css/login.css">
 
-    <?php include_once('./components/registration/stylesheets.php') ?>
-   
 </head>
 
 <body>
@@ -42,7 +76,7 @@ if (isset($_POST['submit'])) {
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate="Username is required">
-                        <input class="input100" type="text" name="emailusername" placeholder="Username or Email" required>
+                        <input class="input100" type="text" name="username" placeholder="Username or Email" required>
                         <span class=" focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -82,7 +116,6 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </div>
-    <?php include_once('./components/registration/scripts.php') ?>
 
 </body>
 

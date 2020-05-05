@@ -70,3 +70,11 @@ echo "</table>";
 // set footer
 include_once "footer.php";
 ?>
+
+<?php
+    if(isset($_SESSION)){
+        include_once 'authentication.php';
+    };
+?> 
+
+<a class="dropdown-item" href="index.php?q=logout">Logout</a>

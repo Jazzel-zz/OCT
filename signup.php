@@ -1,23 +1,43 @@
 <?php 
-include_once 'include/class.user.php';
-$user = new User();
-// Checking for user logged in or not
-    /*if (!$user->get_session())
-    {
-       header("location:index.php");
-    }*/
+// get database connection
+include_once 'config/database.php';
+ 
+// instantiate user object
+include_once 'objects/user.php';
+ 
+$database = new Database();
+$db = $database->getConnection();
+ 
+$user = new User($db);
+
 if (isset($_POST['submit'])){
-        extract($_POST);
-        $register = $user->reg_user($ufirst_name,$ulast_name, $uname, $upass, $uemail);
-        if ($register) {
-            // Registration Success
-            echo "<div style='text-align:center'>Registration successful <a href='login.php'>Click here</a> to login</div>";
-        } else {
-            // Registration Failed
-            echo "<div style='text-align:center'>Registration failed. Email or Username already exits please try again.</div>";
-        }
-    }
+        
+// set user property values
+$user->username = $_POST['username'];
+$user->first_name = $_POST['first_name'];
+$user->last_name = $_POST['last_name'];
+$user->email = $_POST['email'];
+$user->password = md5($_POST['password']);
+ 
+// create the user
+if($user->signup()){
+    $user_arr=array(
+        "status" => true,
+        "message" => "Successfully Signup!",
+        "id" => $user->id,
+        "username" => $user->username
+    );
+}
+else{
+    $user_arr=array(
+        "status" => false,
+        "message" => "Username already exists!"
+    );
+}
+print_r(json_encode($user_arr));
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +46,6 @@ if (isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OCT - Signup</title>
     <link rel="stylesheet" href="assets/css/login.css">
-    <?php include_once('./components/registration/stylesheets.php') ?>
    
 </head>
 
@@ -46,7 +65,7 @@ if (isset($_POST['submit'])){
                     <div class="form-inline">
 
                         <div class="wrap-input100 validate-input w-50 pr-1" data-validate="First name is required">
-                            <input class="input100" type="text" name="ufirst_name" placeholder="First Name">
+                            <input class="input100" type="text" name="first_name" placeholder="First Name">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -54,7 +73,7 @@ if (isset($_POST['submit'])){
                         </div>
 
                         <div class="wrap-input100 validate-input pl-1 w-50" data-validate="Last name is required">
-                            <input class="input100" type="text" name="ulast_name" placeholder="Last name">
+                            <input class="input100" type="text" name="last_name" placeholder="Last name">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
@@ -63,7 +82,7 @@ if (isset($_POST['submit'])){
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="uemail" placeholder="Email">
+                        <input class="input100" type="text" name="email" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-lock" aria-hidden="true"></i>
@@ -73,7 +92,7 @@ if (isset($_POST['submit'])){
                     <div class="form-inline">
 
                         <div class="wrap-input100 validate-input w-50 pr-1" data-validate="Username is required">
-                            <input class="input100" type="text" name="uname" placeholder="Username">
+                            <input class="input100" type="text" name="username" placeholder="Username">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
@@ -81,7 +100,7 @@ if (isset($_POST['submit'])){
                         </div>
 
                         <div class="wrap-input100 validate-input w-50 pl-1" data-validate="Password is required">
-                            <input class="input100" type="password" name="upass" placeholder="Password">
+                            <input class="input100" type="password" name="password" placeholder="Password">
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
@@ -117,7 +136,6 @@ if (isset($_POST['submit'])){
             </div>
         </div>
     </div>
-    <?php include_once('./components/registration/scripts.php') ?>
 
     <script>
         function submitreg() {

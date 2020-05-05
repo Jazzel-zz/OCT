@@ -35,3 +35,11 @@ include_once "read_template.php";
 // layout_footer.php holds our javascript and closing html tags
 include_once "footer.php";
 ?>
+
+<?php
+    if(isset($_SESSION)){
+        include_once 'authentication.php';
+    };
+?> 
+
+<a class="dropdown-item" href="index.php?q=logout">Logout</a>

@@ -27,3 +27,11 @@ if($_POST){
     }
 }
 ?>
+
+<?php
+    if(isset($_SESSION)){
+        include_once 'authentication.php';
+    };
+?> 
+
+<a class="dropdown-item" href="index.php?q=logout">Logout</a>
