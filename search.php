@@ -19,6 +19,15 @@ $search_term=isset($_GET['s']) ? $_GET['s'] : '';
  
 $page_title = "You searched for \"{$search_term}\"";
 include_once "header.php";
+?>
+
+  <div class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-chart">
+              <div class="card-header">
+<?php
+ 
  
 // query products
 $stmt = $product->search($search_term, $from_record_num, $records_per_page);
@@ -31,7 +40,14 @@ $total_rows=$product->countAll_BySearch($search_term);
  
 // read_template.php controls how the product list will be rendered
 include_once "read_template.php";
- 
+?>
+  </div>
+              </div>
+              </div>
+              </div>
+              </div>
+<?php
+
 // layout_footer.php holds our javascript and closing html tags
 include_once "footer.php";
 ?>
@@ -41,5 +57,3 @@ include_once "footer.php";
         include_once 'authentication.php';
     };
 ?> 
-
-<a class="dropdown-item" href="index.php?q=logout">Logout</a>

@@ -14,24 +14,35 @@ $product = new Product($db);
 $category = new Category($db);
 // set page headers
 $page_title = "Create Product";
-include_once "layout_header.php";
+include_once "header.php";
 
- echo "<div class='right-button-margin'>";
-    echo "<a href='index.php' class='btn btn-primary pull-right'>";
-        echo "<span class='glyphicon glyphicon-list'></span> Read Products";
+?>
+  <div class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-chart">
+              <div class="card-header">
+              
+<?php
+
+ echo ('<div class="row pt-3 pl-3"><div class="col-3">');
+        echo('<div class="h1 text-white styled-font">'.$page_title.'</div>');
+        echo ('</div>');
+        echo ('<div class="col">');
+         echo "<div class='right-button-margin'>";
+    echo "<a href='products.php' class='btn btn-primary pull-right'>";
+        echo "<i class='fa fa-chevron-left'></i> &nbsp; Back to list";
     echo "</a>";
 echo "</div>";
- 
-?>
+        echo "</div>";
+        echo "</div>";
 
-<?php
     if(isset($_SESSION)){
         include_once 'authentication.php';
     };
-?> 
 
-<a class="dropdown-item" href="index.php?q=logout">Logout</a>
-<?php 
+
+ 
 if($_POST){
  
     // set product property values
@@ -57,12 +68,13 @@ if($_POST){
     }
 }
 ?>
- 
+    
+              
 <!-- HTML form for creating a product -->
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
 
  
-    <table class='table table-hover table-responsive table-bordered'>
+    <table class='table table-hover'>
  
         <tr>
             <td>Name</td>
@@ -74,11 +86,6 @@ if($_POST){
             <td><input type='text' name='price' class='form-control' /></td>
         </tr>
         
-        <tr>
-            <td>Discount Price</td>
-            <td><input type='text' name='discount_price' class='form-control' /></td>
-        </tr>
-
         <tr>
             <td>Description</td>
             <td><textarea name='description' class='form-control'></textarea></td>
@@ -113,13 +120,18 @@ echo "</select>";
         <tr>
             <td></td>
             <td>
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary pull-right">Create</button>
             </td>
         </tr>
  
     </table>
 </form>
+</div>
+              </div>
+              </div>
+              </div>
+              </div>
 <?php
 // footer
-include_once "layout_footer.php";
+include_once "footer.php";
 ?>

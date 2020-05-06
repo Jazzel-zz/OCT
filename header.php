@@ -56,50 +56,21 @@ session_start();
           </li>
           <li <?php echo $page_title=="Products" ? "class='active'" : ""; ?>>
             <a href="./products.php">
-              <i class="tim-icons icon-atom"></i>
+              <i class="tim-icons icon-notes"></i>
               <p>Products</p>
             </a>
           </li>
-          <li>
-            <a href="./map.html">
-              <i class="tim-icons icon-pin"></i>
-              <p>Maps</p>
+          <li <?php echo $page_title=="Categories" ? "class='active'" : ""; ?>>
+            <a href="./categories.php">
+              <i class="tim-icons icon-paper"></i>
+              <p>Categories</p>
             </a>
           </li>
-          <li>
-            <a href="./notifications.html">
-              <i class="tim-icons icon-bell-55"></i>
-              <p>Notifications</p>
-            </a>
-          </li>
-          <li>
-            <a href="./user.html">
-              <i class="tim-icons icon-single-02"></i>
-              <p>User Profile</p>
-            </a>
-          </li>
-          <li>
-            <a href="./tables.html">
-              <i class="tim-icons icon-puzzle-10"></i>
-              <p>Table List</p>
-            </a>
-          </li>
-          <li>
-            <a href="./typography.html">
-              <i class="tim-icons icon-align-center"></i>
-              <p>Typography</p>
-            </a>
-          </li>
-          <li>
-            <a href="./rtl.html">
-              <i class="tim-icons icon-world"></i>
-              <p>RTL Support</p>
-            </a>
-          </li>
+         
           <li class="active-pro">
-            <a href="./upgrade.html">
+            <a href="./index.php">
               <i class="tim-icons icon-spaceship"></i>
-              <p>Upgrade to PRO</p>
+              <p>Go back to site</p>
             </a>
           </li>
         </ul>

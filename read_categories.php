@@ -27,9 +27,7 @@ if($total_rows>0){
  
     echo "<table class='table table-hover table-striped'>";
         echo "<tr style='color:white !important;'>";
-            echo "<th>Product</th>";
-            echo "<th>Price</th>";
-            echo "<th>Category</th>";
+            echo "<th colspan=3>Category</th>";
             echo "<th>Actions</th>";
         echo "</tr>";
  
@@ -38,12 +36,7 @@ if($total_rows>0){
             extract($row);
  
             echo "<tr>";
-                echo "<td>{$name}</td>";
-                echo "<td>{$price}</td>";
-                echo "<td>";
-                    $category->id = $category_id;
-                    $category->readName();
-                    echo $category->name;
+                echo "<td colspan=3>{$name}</td>";
                 echo "</td>";
                 
     

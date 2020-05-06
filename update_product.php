@@ -26,14 +26,27 @@ $product->readOneToUpdate();
 // set page header
 $page_title = "Update Product";
 include_once "header.php";
- 
-echo "<div class='right-button-margin'>";
-    echo "<a href='index.php' class='btn btn-primary pull-right'>";
-        echo "<span class='glyphicon glyphicon-list'></span> Read Products";
+
+?>
+  <div class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-chart">
+              <div class="card-header">
+              
+<?php
+
+ echo ('<div class="row pt-3 pl-3"><div class="col-3">');
+        echo('<div class="h1 text-white styled-font">'.$page_title.'</div>');
+        echo ('</div>');
+        echo ('<div class="col">');
+         echo "<div class='right-button-margin'>";
+    echo "<a href='products.php' class='btn btn-primary pull-right'>";
+        echo "<i class='fa fa-chevron-left'></i> &nbsp; Back to list";
     echo "</a>";
 echo "</div>";
-?>
-<?php 
+        echo "</div>";
+        echo "</div>"; 
 // if the form was submitted
 if($_POST){
  
@@ -64,7 +77,7 @@ if($_POST){
 ?>
  
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}");?>" method="post">
-    <table class='table table-hover table-responsive table-bordered'>
+    <table class='table table-hover'>
  
         <tr>
             <td>Name</td>
@@ -76,11 +89,6 @@ if($_POST){
             <td><input type='text' name='price' value='<?php echo $product->price; ?>' class='form-control' /></td>
         </tr>
 
-         <tr>
-            <td>Discount Price</td>
-            <td><input type='text' name='discount_price' value='<?php echo $product->discount_price; ?>' class='form-control' /></td>
-        </tr>
- 
         <tr>
             <td>Description</td>
             <td><textarea name='description' class='form-control'><?php echo $product->description; ?></textarea></td>
@@ -123,12 +131,17 @@ echo "</select>";
         <tr>
             <td></td>
             <td>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary pull-right">Update</button>
             </td>
         </tr>
  
     </table>
 </form>
+  </div>
+              </div>
+              </div>
+              </div>
+              </div>
 <?php
  
 
@@ -142,5 +155,3 @@ include_once "footer.php";
         include_once 'authentication.php';
     };
 ?> 
-
-<a class="dropdown-item" href="index.php?q=logout">Logout</a>
