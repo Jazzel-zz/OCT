@@ -41,6 +41,11 @@ echo ('<div class="content"><div class="row"><div class="col-12"><div class="car
 include_once "read_categories.php";
 echo('</div></div></div></div></div>');
 
+?>
+<script>
+
+</script>
+<?php
 // layout_footer.php holds our javascript and closing html tags
 include_once "footer.php";
 

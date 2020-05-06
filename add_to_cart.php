@@ -26,7 +26,7 @@ if(!isset($_SESSION['cart'])){
 // check if the item is in the array, if it is, do not add
 if(array_key_exists($id, $_SESSION['cart'])){
     // redirect to product list and tell the user it was added to cart
-    header('Location: products.php?action=exists&id=' . $id . '&page=' . $page);
+    header('Location: index.php?action=exists&id=' . $id . '&page=' . $page);
 }
  
 // else, add the item to the array
@@ -34,6 +34,6 @@ else{
     $_SESSION['cart'][$id]=$cart_item;
  
     // redirect to product list and tell the user it was added to cart
-    header('Location: products.php?action=added&page=' . $page);
+    header('Location: index.php?action=added&page=' . $page);
 }
 ?>

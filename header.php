@@ -66,7 +66,12 @@ session_start();
               <p>Categories</p>
             </a>
           </li>
-         
+          <li <?php echo $page_title=="Admin" ? "class='active'" : ""; ?>>
+            <a href="./user_functions.php">
+              <i class="tim-icons icon-settings-gear-63"></i>
+              <p>Admin functions</p>
+            </a>
+          </li>
           <li class="active-pro">
             <a href="./index.php">
               <i class="tim-icons icon-spaceship"></i>

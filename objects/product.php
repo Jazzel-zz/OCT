@@ -156,6 +156,8 @@ function readOne(){
         }
  
     }
+
+    
  function readAll($from_record_num, $records_per_page){
  
     $query = "SELECT

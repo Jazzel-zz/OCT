@@ -7,16 +7,7 @@
         echo('<div class="h1 text-white styled-font">'.$page_title.'</div>');
         echo ('</div>');
         echo ('<div class="col">');
-        echo "<form role='search' class='form-inline pull-right' action='search.php'>";
-        echo('<div class="input-group mb-2 mr-sm-2">');
-        echo('<a href="create_product.php" type="submit" class="btn btn-md btn-primary mb-2"><i class="fa fa-plus"></i></a>');
-        echo "</div>";
-        $search_value=isset($search_term) ? "value='{$search_term}'" : "";
-        echo('<div class="input-group mb-2 mr-sm-2">');
-        echo('<div class="input-group-prepend"><button type="submit" class="btn btn-md btn-primary mb-2"><i class="fa fa-search"></i></button></div>');
-        echo "<input type='text' class='form-control mt-1' name='s' id='srch-term' placeholder='Type product name or description...' required {$search_value} />";
-        echo "</div>";
-        echo "</form>";
+        echo('<a href="create_category.php" type="submit" class="btn btn-md btn-primary mb-2 pull-right"><i class="fa fa-plus"></i></a>');
         echo "</div>";
         echo "</div>";
 
@@ -27,7 +18,12 @@ if($total_rows>0){
  
     echo "<table class='table table-hover table-striped'>";
         echo "<tr style='color:white !important;'>";
-            echo "<th colspan=3>Category</th>";
+            echo "<th colspan='7'>Category</th>";
+                echo "<th></th>";
+                echo "<th></th>";
+                echo "<th></th>";
+                echo "<th></th>";
+
             echo "<th>Actions</th>";
         echo "</tr>";
  
@@ -36,19 +32,20 @@ if($total_rows>0){
             extract($row);
  
             echo "<tr>";
-                echo "<td colspan=3>{$name}</td>";
-                echo "</td>";
-                
+                echo "<td colspan='7'>{$name}</td>";
+                echo "<td ></td>";
+                echo "<td ></td>";
+                echo "<td ></td>";
+                echo "<td ></td>";
     
                     echo "<td>";
-    
                         // read product button
-                        echo "<a href='detail_product.php?id={$id}' class='mr-1 btn btn-primary left-margin'>";
+                        echo "<a href='detail_category.php?id={$id}' class='mr-1 btn btn-primary left-margin'>";
                             echo "<span class='fa fa-list'></span> ";
                     echo "</a>";
  
                     // edit product button
-                    echo "<a href='update_product.php?id={$id}' class='ml-1 mr-1 btn btn-info left-margin'>";
+                    echo "<a href='update_category.php?id={$id}' class='ml-1 mr-1 btn btn-info left-margin'>";
                         echo "<span class='fa fa-edit'></span> ";
                     echo "</a>";
  
