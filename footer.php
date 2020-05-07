@@ -203,6 +203,19 @@ $(document).on('click', '.delete-object', function(){
             }
 <?php
                 }
+                else if ($page_title == 'Top Clients/Users'){
+              ?>
+ if(result==true){
+                $.post('delete_user.php', {
+                    object_id: id
+                }, function(data){
+                    location.reload();
+                }).fail(function() {
+                    alert('Unable to delete.');
+                });
+            }
+<?php
+                }
                 else{
               ?>
             if(result==true){
@@ -214,6 +227,8 @@ $(document).on('click', '.delete-object', function(){
                     alert('Unable to delete.');
                 });
             }  
+            
+            Top Clients/Users
 
 <?php
 

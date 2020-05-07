@@ -20,7 +20,7 @@
                   <div class="card-body">
                       <h2 class="card-title">Reports</h4>
                       <a class="btn btn-primary" href="./best_selling_products.php" role="button">Top 10 best selling products</a>
-                      <a class="btn btn-primary" href="./.php" role="button">Top 10 clients/users (doing maximum shopping)</a>
+                      <a class="btn btn-primary" href="./top_users_shopping.php" role="button">Top 10 clients/users (doing maximum shopping)</a>
                   </div>
               </div>
               </div>

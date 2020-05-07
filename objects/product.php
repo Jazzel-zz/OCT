@@ -175,7 +175,7 @@ function readOne(){
     return $stmt;
 }
 
-function readTop10($from_record_num, $records_per_page){
+function readTop10Products($from_record_num, $records_per_page){
  
     $query = "SELECT p.id, p.name, p.description, p.price, p.category_id, COUNT(*) FROM products as p RIGHT JOIN cart_items as c on c.product_id = p.id GROUP BY c.product_id HAVING COUNT(*) > 1 ORDER BY `COUNT(*)` DESC LIMIT 10";
  
@@ -184,7 +184,6 @@ function readTop10($from_record_num, $records_per_page){
  
     return $stmt;
 }
-
 
 // used for paging products
 public function countAll(){

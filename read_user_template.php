@@ -7,7 +7,7 @@
         echo('<div class="h1 text-white styled-font">'.$page_title.'</div>');
         echo ('</div>');
         echo ('<div class="col">');
-        if (!$page_title == 'Best Selling Products'){
+        if (!$page_title == 'Top Clients/Users'){
 
         echo "<form role='search' class='form-inline pull-right' action='search.php'>";
         echo('<div class="input-group mb-2 mr-sm-2">');
@@ -32,9 +32,8 @@ if($total_rows>0){
  
     echo "<table class='table table-hover table-striped'>";
         echo "<tr style='color:white !important;'>";
-            echo "<th>Product</th>";
-            echo "<th>Price</th>";
-            echo "<th>Category</th>";
+            echo "<th>Username</th>";
+            echo "<th>Email</th>";
             echo "<th>Actions</th>";
         echo "</tr>";
  
@@ -43,13 +42,8 @@ if($total_rows>0){
             extract($row);
  
             echo "<tr>";
-                echo "<td>{$name}</td>";
-                echo "<td>{$price}</td>";
-                echo "<td>";
-                    $category->id = $category_id;
-                    $category->readName();
-                    echo $category->name;
-                echo "</td>";
+                echo "<td>{$username}</td>";
+                echo "<td>{$email}</td>";
                 
     
                     echo "<td>";
@@ -57,11 +51,6 @@ if($total_rows>0){
                         // read product button
                         echo "<a href='detail_product.php?id={$id}' class='mr-1 btn btn-primary left-margin'>";
                             echo "<span class='fa fa-list'></span> ";
-                    echo "</a>";
- 
-                    // edit product button
-                    echo "<a href='update_product.php?id={$id}' class='ml-1 mr-1 btn btn-info left-margin'>";
-                        echo "<span class='fa fa-edit'></span> ";
                     echo "</a>";
  
                     // delete product button
@@ -77,7 +66,7 @@ if($total_rows>0){
  
     echo "</table>";
  
-    if (!$page_title == 'Best Selling Products'){
+    if (!$page_title == 'Top Clients/Users'){
         // paging buttons
         include_once 'dashboard_paging.php';
     }

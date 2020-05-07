@@ -98,6 +98,49 @@ class User{
         }
     }
 
+
+
+function readTop10Users($from_record_num, $records_per_page){
+ 
+    $query = "SELECT u.id, u.username, u.email, COUNT(*) FROM users as u RIGHT JOIN cart_items as c on c.user_id = u.id GROUP BY c.user_id HAVING COUNT(*) > 1 ORDER BY `COUNT(*)` DESC LIMIT 10";
+ 
+    $stmt = $this->conn->prepare( $query );
+    $stmt->execute();
+ 
+    return $stmt;
+}
+
+
+
+// used for paging products
+public function countAll(){
+ 
+    $query = "SELECT id FROM " . $this->table_name . "";
+ 
+    $stmt = $this->conn->prepare( $query );
+    $stmt->execute();
+ 
+    $num = $stmt->rowCount();
+ 
+    return $num;
+}
+
+// delete the product
+function delete(){
+ 
+    $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
+     
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(1, $this->id);
+ 
+    if($result = $stmt->execute()){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
     function get_name($uid){
 		$query = "SELECT first_name, last_name FROM users WHERE id = $uid";
 		
