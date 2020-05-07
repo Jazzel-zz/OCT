@@ -4,15 +4,12 @@ class CartItem{
  
     // database connection and table name
     private $conn;
-    private $table_name = "order_items";
+    private $table_name = "cart_items";
  
     // object properties
     public $id;
-    public $product_id;
     public $quantity;
     public $user_id;
-    public $created;
-    public $modified;
  
     // constructor
     public function __construct($db){
@@ -74,6 +71,48 @@ public function count(){
     // return
     return $rows[0];
 }
+
+
+ // create product
+    function create(){
+ 
+        //write query
+        $query = "INSERT INTO
+                    " . $this->table_name . "
+                SET
+                    product_id=:product_id, quantity=:quantity, user_id=:user_id";
+ 
+        $stmt = $this->conn->prepare($query);
+ 
+        // posted values
+        $this->id=htmlspecialchars(strip_tags($this->id));
+        $this->quantity=htmlspecialchars(strip_tags($this->quantity));
+        // $this->description=htmlspecialchars(strip_tags($this->description));
+        // $this->category_id=htmlspecialchars(strip_tags($this->category_id));
+        // $this->image=htmlspecialchars(strip_tags($this->image));
+
+ 
+        $this->user_id = 2;
+
+        // bind values 
+        $stmt->bindParam(":product_id", $this->id);
+        $stmt->bindParam(":quantity", $this->quantity);
+        $stmt->bindParam(":user_id", $_SESSION['user_id']);
+        echo $this->quantity; 
+        // $stmt->bindParam(":category_id", $this->category_id);
+        // $stmt->bindParam(":user_id", $this->user_id);
+        // $stmt->bindParam(":image", $this->image);
+
+ 
+        if($stmt->execute()){
+            return true;
+        }else{
+            return false;
+        }
+ 
+    }
+
+
 }
 
 ?>

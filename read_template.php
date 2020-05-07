@@ -7,8 +7,11 @@
         echo('<div class="h1 text-white styled-font">'.$page_title.'</div>');
         echo ('</div>');
         echo ('<div class="col">');
+        if (!$page_title == 'Best Selling Products'){
+
         echo "<form role='search' class='form-inline pull-right' action='search.php'>";
         echo('<div class="input-group mb-2 mr-sm-2">');
+            
         echo('<a href="create_product.php" type="submit" class="btn btn-md btn-primary mb-2"><i class="fa fa-plus"></i></a>');
         echo "</div>";
         $search_value=isset($search_term) ? "value='{$search_term}'" : "";
@@ -17,6 +20,8 @@
         echo "<input type='text' class='form-control mt-1' name='s' id='srch-term' placeholder='Type product name or description...' required {$search_value} />";
         echo "</div>";
         echo "</form>";
+        }
+
         echo "</div>";
         echo "</div>";
 
