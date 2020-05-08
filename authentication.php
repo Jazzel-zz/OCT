@@ -8,7 +8,7 @@ $user = new User($db);
         echo("<script>location.href = 'index.php';</script>");
     }
 
-    if(!isset($_SESSION['login'])){
+    if(!isset($_SESSION['user_id'])){
         // header('location:index.php');
         echo("<script>location.href = 'index.php';</script>");
 

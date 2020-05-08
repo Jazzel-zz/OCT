@@ -34,6 +34,7 @@ if($total_rows>0){
         echo "<tr style='color:white !important;'>";
             echo "<th>Username</th>";
             echo "<th>Email</th>";
+            echo "<th>Name</th>";
             echo "<th>Actions</th>";
         echo "</tr>";
  
@@ -44,14 +45,10 @@ if($total_rows>0){
             echo "<tr>";
                 echo "<td>{$username}</td>";
                 echo "<td>{$email}</td>";
+                echo "<td>{$first_name} {$last_name}</td>";
                 
     
                     echo "<td>";
-    
-                        // read product button
-                        echo "<a href='detail_product.php?id={$id}' class='mr-1 btn btn-primary left-margin'>";
-                            echo "<span class='fa fa-list'></span> ";
-                    echo "</a>";
  
                     // delete product button
                     echo "<a delete-id='{$id}' class='ml-1 mr-1 btn btn-danger delete-object'>";

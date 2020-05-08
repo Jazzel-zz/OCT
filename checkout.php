@@ -73,9 +73,16 @@ if(count($_SESSION['cart'])>0){
                 echo "<h4 class='m-b-10px'>Total ({$item_count} item)</h4>";
             }
             echo "<h4>&#36;" . number_format($total, 2, '.', ',') . "</h4>";
-            echo "<a href='place_order.php' class='btn btn-lg btn-success m-b-10px'>";
-                echo "<span class='glyphicon glyphicon-shopping-cart'></span> Place Order";
-            echo "</a>";
+            if (empty($_SESSION['user_id'])){
+                echo "<a href='login.php' class='btn btn-lg btn-success m-b-10px'>";
+                    echo "<span class='glyphicon glyphicon-shopping-cart'></span> You have to login first to place order";
+                echo "</a>";
+            } else {
+                echo "<a href='place_order.php' class='btn btn-lg btn-success m-b-10px'>";
+                    echo "<span class='glyphicon glyphicon-shopping-cart'></span> Place Order";
+                echo "</a>";
+            }
+           
         echo "</div>";
     echo "</div>";
  

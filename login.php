@@ -1,5 +1,7 @@
-<?php
 
+
+<?php
+session_start();
 // include database and object files
 include_once 'config/database.php';
 include_once 'objects/user.php';
@@ -13,9 +15,11 @@ $user = new User($db);
 
 // set page headers
 $page_title = "Login";
-include_once "header.php";
+include_once "./login_header.php";
  
 ?>
+
+
 <?php
 if($_POST){
 
@@ -52,18 +56,6 @@ else{
 print_r(json_encode($user_arr));
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCT - Login</title>
-<link rel="stylesheet" href="assets/css/login.css">
-
-</head>
-
-<body>
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
@@ -117,7 +109,7 @@ print_r(json_encode($user_arr));
             </div>
         </div>
     </div>
+<?php
+include_once "./login_footer.php";
 
-</body>
-
-</html>
+?>

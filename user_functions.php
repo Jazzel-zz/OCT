@@ -29,5 +29,11 @@
         </div>
       </div>
       
+<?php
+    if(isset($_SESSION)){
+        include_once 'authentication.php';
+    };
+
+?> 
   
 <?php  include_once('./footer.php') ?>
