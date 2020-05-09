@@ -54,7 +54,7 @@ $num = $stmt->rowCount();
 // if products retrieved were more than zero
 if($num>0){
     // needed for paging
-    $page_url="products.php?";
+    $page_url="index.php?";
     $total_rows=$product->count();
  
     // show products

@@ -77,7 +77,7 @@ if($total_rows>0){
  
     echo "</table>";
  
-    if (!$page_title == 'Best Selling Products'){
+    if ($page_title == 'Products'){
         // paging buttons
         include_once 'dashboard_paging.php';
     }

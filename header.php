@@ -48,12 +48,12 @@ session_start();
           </a>
         </div>
         <ul class="nav">
-          <li <?php echo $page_title=="Dashboard" ? "class='active'" : ""; ?>>
+          <!-- <li <?php echo $page_title=="Dashboard" ? "class='active'" : ""; ?>>
             <a href="./dashboard.php">
               <i class="tim-icons icon-chart-pie-36"></i>
               <p>Dashboard</p>
             </a>
-          </li>
+          </li> -->
           <li <?php echo $page_title=="Products" ? "class='active'" : ""; ?>>
             <a href="./products.php">
               <i class="tim-icons icon-notes"></i>

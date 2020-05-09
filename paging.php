@@ -5,7 +5,7 @@ echo "<div class='col-md-12'>";
  
     // button for first page
     if($page>1){
-        echo "<li class="page-item"><a  class='page-link' href='{$page_url}' title='Go to the first page.'>";
+        echo "<li class='page-item'><a class='page-link' href='{$page_url}' title='Go to the first page.'>";
             echo "First Page";
         echo "</a></li>";
     }
@@ -31,7 +31,7 @@ echo "<div class='col-md-12'>";
  
             // not current page
             else {
-                echo "<li class="page-item"><a  class='page-link' href='{$page_url}page=$x'>$x</a></li>";
+                echo "<li class='page-item'><a  class='page-link' href='{$page_url}page=$x'>$x</a></li>";
             }
         }
     }

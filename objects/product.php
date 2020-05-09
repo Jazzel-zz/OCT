@@ -175,6 +175,25 @@ function readOne(){
     return $stmt;
 }
 
+
+ function readForPublic($id){
+ 
+    $query = "SELECT
+                id, name, description, price, created, category_id
+            FROM
+                " . $this->table_name . "
+            WHERE
+                category_id = ".$id."
+            ORDER BY
+                name ASC";
+    
+
+    $stmt = $this->conn->prepare( $query );
+    $stmt->execute();
+ 
+    return $stmt;
+}
+
 function readTop10Products($from_record_num, $records_per_page){
  
     $query = "SELECT p.id, p.name, p.description, p.price, p.category_id, COUNT(*) FROM products as p RIGHT JOIN cart_items as c on c.product_id = p.id GROUP BY c.product_id HAVING COUNT(*) > 1 ORDER BY `COUNT(*)` DESC LIMIT 10";

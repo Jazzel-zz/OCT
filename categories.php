@@ -1,4 +1,5 @@
 <?php
+
 // core.php holds pagination variables
 include_once 'config/core.php';
 $page_title = "Categories";
@@ -25,7 +26,6 @@ include_once "header.php";
 
 ?> 
 
-<!-- <a class="dropdown-item" href="products.php?q=logout">Logout</a> -->
 <?php
 
 // query products

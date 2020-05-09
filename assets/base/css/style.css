@@ -1,44 +1,4 @@
-/*
-[Master Stylesheet]
 
-Project:  Vincent
-Version:  1.0
-
-[Table of contents]
-1.  General
-2.  Header
-3.  Typography
-4.  Contact with Sidebar 
-5.  Contact with Gallery
-6.  Contact Multiple Maps
-7.  About1
-8.  About2
-9.  Team
-10. Menu1
-11. Menu2
-12. Menu3
-13. Home 6
-14. Home 1
-15. Home 2
-16. Home 3
-17. Home 4
-18. Home 5
-19. Fullscreen Gallery
-19. 404
-19. Blog Grid
-19. Blog Fullscreen
-19. Blog Standard 
-20. Standard Post
-21. Product listing
-22. Single Product
-23. Product
-24. Cart
-25. Checkout
-26. Responsive
-
-*/
-
-/* General */
  * {
      margin: 0;
      padding: 0;
