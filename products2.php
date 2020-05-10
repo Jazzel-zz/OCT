@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -128,9 +130,20 @@
                 <div class="vincent_inner">
                     <a href="cart.html">
                         <div class="vincent_shopping_cart">
+
+
+                        <?php
+                        // count products in cart
+                        $_SESSION['cart']=isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
+                        $cart_count=count($_SESSION['cart']);
+                        ?>
+
+
+
                             <div class="vincent_total_price">$0.00</div>
-                            <div class="vincent_total_items">0 items - View Cart</div>
-                            <div class="vincent_cart_item_counter">0</div>
+                            <div class="vincent_total_items">
+                            <?php echo $cart_count; ?> items - View Cart</div>
+                            <div class="vincent_cart_item_counter"><?php echo $cart_count; ?></div>
                         </div>
                     </a>
                 </div>
@@ -231,39 +244,11 @@ while ($row = $cat_stmt->fetch(PDO::FETCH_ASSOC)){
             }
             echo "</div>";
         echo "</div>";
- 
-
-        //     extract($row);
-        //     echo ($cat_id);
-
-        //     // if ($category_id == "{$id}"){
-        //     //     echo '<div class="col col-3">';
-        //     //     echo '  <div class="vincent_menu1_block_item">';
-        //     //     echo '      <div class="vincent_prod_list_image_cont">';
-        //     //     echo '          <div class="vincent_prod_list_image_wrapper">';
-        //     //     echo '              <div class="vincent_team_overlay"></div>';
-        //     //     echo '              <img src="assets/base/img/12-3-600x600.png" alt="">';
-        //     //     echo '              <a class="vincent_add_to_cart_button" href="product.html"></a>';
-        //     //     echo '          </div>';
-        //     //     echo '      </div>';
-        //     //     echo "      <h5><a href='product.html'>{$name}</a></h5>";
-        //     //     echo "      <p class='vincent_prod_list_text'></p>";
-        //     //     echo "      <div class='vincent_prod_list_price'>$ {$price} - {$category_id}</div>";
-        //     //     echo '  </div>';
-        //     //     echo '</div>';
-        //      echo '</div>';
-        //     // }
-        // echo '</div>';
 
 }
-
-
-
  
 ?>
 
-                     
-                        
                     </div>
                 </div>
 
@@ -275,24 +260,24 @@ while ($row = $cat_stmt->fetch(PDO::FETCH_ASSOC)){
                     <div class="row gutters">
                         <div class="col col-4">
                             <div class="vincent_advantages_item vincent_icon_box">
-                                <img src="assets/base/img/icon_1.png" alt="">
-                                <h4>Quality Foods</h4>
+                                <img src="assets/base/img/icon_4.png" alt="">
+                                <h4>Quality Products</h4>
                                 <p>Sit amet, consectetur adipiscing elit quisque eget maximus velit, non eleifend libero
                                     curabitur dapibus mauris sed leo cursus aliquetcras suscipit.</p>
                             </div>
                         </div>
                         <div class="col col-4">
                             <div class="vincent_advantages_item vincent_icon_box">
-                                <img src="assets/base/img/icon_3.png" alt="">
-                                <h4>Fastest Delivery</h4>
+                                <img src="assets/base/img/icon_6.png" alt="">
+                                <h4>Chemical Free</h4>
                                 <p>Sit amet, consectetur adipiscing elit quisque eget maximus velit, non eleifend libero
                                     curabitur dapibus mauris sed leo cursus aliquetcras suscipit.</p>
                             </div>
                         </div>
                         <div class="col col-4">
                             <div class="vincent_advantages_item vincent_icon_box">
-                                <img src="assets/base/img/icon_2.png" alt="">
-                                <h4>Original Recipes</h4>
+                                <img src="assets/base/img/icons_7.png" alt="">
+                                <h4>Premier Choice </h4>
                                 <p>Sit amet, consectetur adipiscing elit quisque eget maximus velit, non eleifend libero
                                     curabitur dapibus mauris sed leo cursus aliquetcras suscipit.</p>
                             </div>

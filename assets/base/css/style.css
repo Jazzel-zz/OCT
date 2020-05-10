@@ -213,7 +213,7 @@
      color: rgb(18, 22, 24);
 }
  .vincent_cart_item_counter, .vincent_order_button, .vincent_cart_actions button:hover, .vincent_text_background1, .vincent_back_to_top, .vincent_sidebar_instafeed a:after, .vincent_team_overlay, .vincent_button_background, .vincent_form_subscribe button:hover, .vincent_filter_elem1, .vincent_filter_elem2, .vincent_filter_elem3, .vincent_single_product_search {
-     background: #ffc851;
+     background: rgb(198,82,231);
 }
  .vincent_text_background2{
      background: #dce4e8;
@@ -650,6 +650,8 @@
      -webkit-box-sizing:border-box;
      -moz-box-sizing:border-box;
      border:none;
+     background-color: rgb(198,82,231);
+
 }
  .vincent_back_to_top:after {
      display: block;
@@ -1031,11 +1033,12 @@
      position: relative;
      margin-top: 21px;
      margin-bottom: 23px;
-     background-image: url(../img/bg_title.jpg);
+     background-image: url(../img/back_5.png);
+     background-size: cover;
      ;
 }
  .vincent_title_block:before {
-     background-color: rgba(255,200,81, 0.9);
+     background-color: rgba(198,82,231, 0.6);
      display: inline-block;
      position: absolute;
      width: 100%;
@@ -1745,6 +1748,7 @@
      height: 100%;
      z-index: 3;
      opacity: 0;
+     background-color: rgb(198,82,231);
      -webkit-transition: all .3s;
      transition: all .3s;
 }
@@ -1767,8 +1771,9 @@
      padding: 90px 0 122px 0;
 }
  .vincent_advantages .vincent_parallax_background{
-     background-image: url(../img/back_2.png);
+     background-image: url(../img/back_2.jpg);
      background-position: 0% 0;
+     background-size: cover;
      top: -80%;
      position: absolute;
      bottom: 0;
@@ -2043,6 +2048,7 @@
      text-transform: uppercase;
      border: none;
      padding: 0;
+     
 }
  .vincent_menu_tabs li.active a{
      border: none;
@@ -2056,6 +2062,7 @@
 }
  .vincent_prod_list_image_cont img{
      display: block;
+
 }
  .vincent_menu1_block_item{
      text-align: center;
