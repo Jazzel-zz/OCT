@@ -28,6 +28,6 @@ $_SESSION['cart']=isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
  
         <div class="col-md-12">
             <div class="page-header">
-                <h1><?php echo isset($page_title) ? $page_title : "The Code of a Ninja"; ?></h1>
+                <h1><?php echo ($page_title) ?></h1>
             </div>
         </div>

@@ -21,7 +21,7 @@ $product_image = new ProductImage($db);
 $page_title="Cart";
  
 // include page header html
-include 'layout_header.php';
+include 'base_header.php';
  
 $action = isset($_GET['action']) ? $_GET['action'] : "";
  
@@ -114,5 +114,4 @@ else{
 }
 
 // layout footer 
-include 'layout_footer.php';
-?>
+include 'base_footer.php';
