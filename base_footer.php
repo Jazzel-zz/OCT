@@ -13,6 +13,14 @@
                      <li><a style='color:white;' href="./discover.php">Products</a></li>
                      <li><a style='color:white;' href="./about.php">About</a></li>
                      <li><a style='color:white;' href="./contact.php">Contact</a></li>
+                     <?php
+                        if (isset($_SESSION['user_id'])) {
+                            echo '<li><a style="color:white;" href="./products.php">Go to dashboard</a></li>';
+                        } else {
+                            echo '<li><a style="color:white;" href="./login.php">Login</a></li>';
+                            echo '<li><a style="color:white;" href="./signup.php">Register</a></li>';
+                        }
+                        ?>
                  </ul>
                  <ul class="vincent_social">
                      <li><a style='color:white;' href="https://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>

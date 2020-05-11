@@ -49,12 +49,8 @@ include_once "base_header.php";
                             echo '          <div class="vincent_prod_list_image_wrapper">';
 
                             echo '              <div class="vincent_team_overlay"></div>';
-                            $product_image->product_id = $id;
-                            $stmt_product_image = $product_image->readFirst();
 
-                            while ($row_product_image = $stmt_product_image->fetch(PDO::FETCH_ASSOC)) {
-                                echo "              <img src='uploads/images/{$row_product_image['name']}'>";
-                            }
+                            echo "              <img src='uploads/{$image}'>";
 
                             echo "              <a class='vincent_add_to_cart_button' href='product.php?id={$id}'></a>";
                             echo '          </div>';

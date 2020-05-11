@@ -238,7 +238,7 @@ input[type="submit"]:hover,
 .vincent_product_wrapper a:hover h5,
 .vincent_stars li,
 .vincent_single_product_price {
-  color: #ffc851;
+  color: rgb(198, 82, 231);
 }
 .vincent_menu > li > a,
 footer,
@@ -408,7 +408,7 @@ input[type="submit"]:hover,
 .vincent_collapse a:hover,
 .vincent_collapse .collapse-toggle.active,
 .vincent_form_subscribe button:hover {
-  border-color: #ffc851;
+  border-color: rgb(198, 82, 231);
 }
 .vincent_collapse a,
 .vincent_legend_block2 blockquote,
@@ -1556,7 +1556,7 @@ footer .vincent_logo_cont {
   margin-left: 5px;
 }
 .vincent_sidebar_tags a:hover {
-  border: solid 2px #ffc851;
+  border: solid 2px rgb(198, 82, 231);
 }
 .vincent_sidebar_instafeed {
   line-height: 0px;

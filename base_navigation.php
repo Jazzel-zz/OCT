@@ -25,6 +25,12 @@
 
                         <li class="menu-item <?php echo $page_title == "Contact" ? "active" : ""; ?>"><a href="./contact.php">Contact</a>
                         </li>
+                        <?php
+                        if (!isset($_SESSION['user_id'])) {
+                            echo '<li><a style="color:white;" href="./login.php">Login</a></li>';
+                            echo '<li><a style="color:white;" href="./signup.php">Register</a></li>';
+                        }
+                        ?>
                     </ul>
                 </nav>
                 <div class="clear"></div>

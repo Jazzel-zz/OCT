@@ -50,7 +50,7 @@ if($total_rows>0){
                     echo "</a>";
  
                     // delete product button
-                    echo "<a delete-id='{$id}' class='ml-1 mr-1 btn btn-danger delete-object'>";
+                   echo "<a delete-id='{$id}' class='ml-1 mr-1 btn btn-danger delete-object'>";
                         echo "<span class='fa fa-trash'></span> ";
                     echo "</a>";
  
@@ -70,4 +70,3 @@ if($total_rows>0){
 else{
     echo "<div class='alert alert-danger'>No products found.</div>";
 }
-?>

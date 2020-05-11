@@ -39,24 +39,18 @@
     $page_title = $product->name;
 
     // set product id
-    $product_image->product_id = $id;
 
     // read all related product image
-    $stmt_product_image = $product_image->readByProductId();
 
-    // count all relatd product image
-    $num_product_image = $stmt_product_image->rowCount();
 
     echo "<div class='col-md-1'>";
     // if count is more than zero
-    if ($num_product_image > 0) {
+    if ($product->image != null) {
         // loop through all product images
-        while ($row = $stmt_product_image->fetch(PDO::FETCH_ASSOC)) {
-            // image name and source url
-            $product_image_name = $row['name'];
-            $source = "uploads/images/{$product_image_name}";
-            echo "<img src='{$source}' class='product-img-thumb mt-1' data-img-id='{$row['id']}' />";
-        }
+        // image name and source url
+        $product_image_name = $product->image;
+        $source = "uploads/{$product_image_name}";
+        echo "<img src='{$source}' class='product-img-thumb mt-1' data-img-id='{$id}' />";
     } else {
         echo "No images.";
     }
@@ -69,19 +63,15 @@
     $num_product_image = $stmt_product_image->rowCount();
 
     // if count is more than zero
-    if ($num_product_image > 0) {
+    if ($product->image != null) {
         // loop through all product images
-        $x = 0;
-        while ($row = $stmt_product_image->fetch(PDO::FETCH_ASSOC)) {
-            // image name and source url
-            $product_image_name = $row['name'];
-            $source = "uploads/images/{$product_image_name}";
-            $show_product_img = $x == 0 ? "display-block" : "display-none";
-            echo "<a href='{$source}' target='_blank' style='padding-bottom:5px;' id='product-img-{$row['id']}' class='product-img {$show_product_img}'>";
-            echo "<img src='{$source}' style='width:100%;' />";
-            echo "</a>";
-            $x++;
-        }
+        // image name and source url
+        $product_image_name = $product->image;
+
+        $source = "uploads/{$product_image_name}";
+        echo "<a href='{$source}' target='_blank' style='padding-bottom:5px;' id='product-img-{$id}' class='product-img'>";
+        echo "<img src='{$source}' style='width:100%;' />";
+        echo "</a>";
     } else {
         echo "No images.";
     }
@@ -114,8 +104,8 @@
 
     // if product was already added in the cart
     if (array_key_exists($id, $_SESSION['cart'])) {
-        echo "<div class='m-b-10px'>This product is already in your cart.</div>";
-        echo "<a href='cart.php' class='btn btn-success w-100-pct'>";
+        echo "<div style='color:white' class='m-b-10px'>This product is already in your cart.</div>";
+        echo "<a href='cart.php'  style='color:white;background: rgb(198,82,231)' class='btn btn w-100-pct'>";
         echo "Update Cart";
         echo "</a>";
     }

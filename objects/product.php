@@ -13,6 +13,7 @@ class Product
     public $price;
     public $description;
     public $category_id;
+    public $image;
     public $timestamp;
 
     // constructor
@@ -95,7 +96,7 @@ class Product
 
         // query to select single record
         $query = "SELECT
-                name, description, price, category_id
+                name, description, price, category_id, image
             FROM
                 " . $this->table_name . "
             WHERE
@@ -123,6 +124,7 @@ class Product
         $this->description = $row['description'];
         $this->price = $row['price'];
         $this->category_id = $row['category_id'];
+        $this->image = $row['image'];
     }
 
     // create product
@@ -133,7 +135,7 @@ class Product
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    name=:name, price=:price, description=:description";
+                    name=:name, price=:price, description=:description, category_id=:category_id, image=:image";
 
         $stmt = $this->conn->prepare($query);
 
@@ -141,8 +143,8 @@ class Product
         $this->name = htmlspecialchars(strip_tags($this->name));
         $this->price = htmlspecialchars(strip_tags($this->price));
         $this->description = htmlspecialchars(strip_tags($this->description));
-        // $this->category_id=htmlspecialchars(strip_tags($this->category_id));
-        // $this->image=htmlspecialchars(strip_tags($this->image));
+        $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+        $this->image = htmlspecialchars(strip_tags($this->image));
 
 
         $this->user_id = 2;
@@ -151,9 +153,8 @@ class Product
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":price", $this->price);
         $stmt->bindParam(":description", $this->description);
-        // $stmt->bindParam(":category_id", $this->category_id);
-        // $stmt->bindParam(":user_id", $this->user_id);
-        // $stmt->bindParam(":image", $this->image);
+        $stmt->bindParam(":category_id", $this->category_id);
+        $stmt->bindParam(":image", $this->image);
 
 
         if ($stmt->execute()) {
@@ -187,7 +188,7 @@ class Product
     {
 
         $query = "SELECT
-                id, name, description, price, created, category_id
+                id, name, description, price, created, category_id, image
             FROM
                 " . $this->table_name . "
             WHERE
@@ -205,7 +206,7 @@ class Product
     function readTop10Products($from_record_num, $records_per_page)
     {
 
-        $query = "SELECT p.id, p.name, p.description, p.price, p.category_id, COUNT(*) FROM products as p RIGHT JOIN cart_items as c on c.product_id = p.id GROUP BY c.product_id HAVING COUNT(*) > 1 ORDER BY `COUNT(*)` DESC LIMIT 10";
+        $query = "SELECT p.id, p.name, p.description, p.price, p.category_id, COUNT(*) FROM products as p JOIN cart_items as c on c.product_id = p.id GROUP BY c.product_id HAVING COUNT(*) > 1 ORDER BY `COUNT(*)` DESC LIMIT 10";
 
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -231,7 +232,7 @@ class Product
     {
 
         $query = "SELECT
-                name, description, price, created, category_id
+                name, description, price, created, category_id, image
             FROM
                 " . $this->table_name . "
             WHERE
@@ -249,7 +250,7 @@ class Product
         $this->price = $row['price'];
         $this->description = $row['description'];
         $this->category_id = $row['category_id'];
-        // $this->image = $row['image'];
+        $this->image = $row['image'];
     }
 
     function update()
@@ -261,17 +262,31 @@ class Product
                 name = :name,
                 price = :price,
                 description = :description,
+                category_id  = :category_id,
+                image = :image 
+            WHERE
+                id = :id";
+
+        $query_without_image = "UPDATE
+                " . $this->table_name . "
+            SET
+                name = :name,
+                price = :price,
+                description = :description,
                 category_id  = :category_id
             WHERE
                 id = :id";
 
+
         $stmt = $this->conn->prepare($query);
+        $stmt_without_image = $this->conn->prepare($query_without_image);
 
         // posted values
         $this->name = htmlspecialchars(strip_tags($this->name));
         $this->price = htmlspecialchars(strip_tags($this->price));
         $this->description = htmlspecialchars(strip_tags($this->description));
         $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+        $this->image = htmlspecialchars(strip_tags($this->image));
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         // bind parameters
@@ -279,14 +294,32 @@ class Product
         $stmt->bindParam(':price', $this->price);
         $stmt->bindParam(':description', $this->description);
         $stmt->bindParam(':category_id', $this->category_id);
+        $stmt->bindParam(':image', $this->image);
         $stmt->bindParam(':id', $this->id);
 
-        // execute the query
-        if ($stmt->execute()) {
-            return true;
+        $stmt_without_image->bindParam(':name', $this->name);
+        $stmt_without_image->bindParam(':price', $this->price);
+        $stmt_without_image->bindParam(':description', $this->description);
+        $stmt_without_image->bindParam(':category_id', $this->category_id);
+        $stmt_without_image->bindParam(':id', $this->id);
+
+        if ($this->image != null) {
+            if ($stmt->execute()) {
+                return true;
+            }
+
+            return false;
+        } else {
+
+            if ($stmt_without_image->execute()) {
+                return true;
+            }
+
+            return false;
         }
 
-        return false;
+        // execute the query
+
     }
 
     // delete the product
@@ -348,7 +381,7 @@ class Product
 
         // select query
         $query = "SELECT
-                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created, p.image
             FROM
                 " . $this->table_name . " p
                 LEFT JOIN

@@ -89,12 +89,14 @@
                        </ul>
                        <div class="vincent_sidebar_block vincent_search_block">
                            <form role='search' class="vincent_search_form" action='search_products.php'>
-                               <?php $search_value = isset($search_term) ? "value='{$search_term}'" : "";
+                               <div class="input-form-group form-inline">
+                                   <?php $search_value = isset($search_term) ? "value='{$search_term}'" : "";
 
-                                echo "<input type='text' name='s' placeholder='Search' required value='{$search_value}'>";
-                                ?>
-                               <span><i class="fa fa-search" aria-hidden="true"></i></span>
-                               <button type="submit" class="btn btn-md btn-primary mb-2">Search</button>
+                                    echo "<input type='text' name='s' placeholder='Search' required value='{$search_value}'>";
+                                    ?>
+                                   <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                                   <!-- <button type="submit" class="btn btn-md btn-primary mb-2">Search</button> -->
+                               </div>
                            </form>
 
 
@@ -126,12 +128,8 @@
                                     echo '          <div class="vincent_prod_list_image_wrapper">';
 
                                     echo '              <div class="vincent_team_overlay"></div>';
-                                    $product_image->product_id = $id;
-                                    $stmt_product_image = $product_image->readFirst();
 
-                                    while ($row_product_image = $stmt_product_image->fetch(PDO::FETCH_ASSOC)) {
-                                        echo "              <img src='uploads/images/{$row_product_image['name']}'>";
-                                    }
+                                    echo "              <img src='uploads/{$image}'>";
 
                                     echo "              <a class='vincent_add_to_cart_button' href='product.php?id={$id}'></a>";
                                     echo '          </div>';
