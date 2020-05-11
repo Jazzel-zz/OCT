@@ -7,7 +7,7 @@
         echo('<div class="h1 text-white styled-font">'.$page_title.'</div>');
         echo ('</div>');
         echo ('<div class="col">');
-        if (!$page_title == 'Best Selling Products'){
+        if ($page_title == 'Products'){
 
         echo "<form role='search' class='form-inline pull-right' action='search.php'>";
         echo('<div class="input-group mb-2 mr-sm-2">');
@@ -91,4 +91,3 @@ if($total_rows>0){
 else{
     echo "<div class='alert alert-danger'>No products found.</div>";
 }
-?>

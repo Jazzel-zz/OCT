@@ -341,6 +341,42 @@ class Product
         return $stmt;
     }
 
+
+    // read products by search term
+    public function searchByName($search_term, $from_record_num, $records_per_page)
+    {
+
+        // select query
+        $query = "SELECT
+                c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+            FROM
+                " . $this->table_name . " p
+                LEFT JOIN
+                    categories c
+                        ON p.category_id = c.id
+            WHERE
+                p.name LIKE ? OR p.description LIKE ?
+            ORDER BY
+                p.name ASC";
+
+        // prepare query statement
+        $stmt = $this->conn->prepare($query);
+
+        // bind variable values
+        $search_term = "%{$search_term}%";
+        $stmt->bindParam(1, $search_term);
+        $stmt->bindParam(2, $search_term);
+
+        // execute query
+        $stmt->execute();
+
+        // return values from database
+        return $stmt;
+    }
+
+
+
+
     public function countAll_BySearch($search_term)
     {
 

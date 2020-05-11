@@ -43,6 +43,7 @@
            <h1 style='color:white'>Discover Our Products</h1>
        </div>
    </div>
+
    <?php
 
 
@@ -86,6 +87,22 @@
                             }
                             ?>
                        </ul>
+                       <div class="vincent_sidebar_block vincent_search_block">
+                           <form role='search' class="vincent_search_form" action='search_products.php'>
+                               <?php $search_value = isset($search_term) ? "value='{$search_term}'" : "";
+
+                                echo "<input type='text' name='s' placeholder='Search' required value='{$search_value}'>";
+                                ?>
+                               <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                               <button type="submit" class="btn btn-md btn-primary mb-2">Search</button>
+                           </form>
+
+
+
+
+
+
+                       </div>
                        <?php
 
                         $cat_stmt = $category->readAll($from_record_num, $records_per_page);

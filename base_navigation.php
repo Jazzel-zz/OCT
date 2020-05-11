@@ -20,12 +20,10 @@
                         </li>
                         <li class="menu-item <?php echo $page_title == "Products" ? "active" : ""; ?>"><a href="./discover.php">Products</a>
                         </li>
-                        <li class="menu-item "><a href="#">About</a>
-
+                        <li class="menu-item <?php echo $page_title == "About" ? "active" : ""; ?>"><a href="./about.php">About</a>
                         </li>
 
-                        <li class="menu-item"><a href="#">Contact</a>
-
+                        <li class="menu-item <?php echo $page_title == "Contact" ? "active" : ""; ?>"><a href="./contact.php">Contact</a>
                         </li>
                     </ul>
                 </nav>

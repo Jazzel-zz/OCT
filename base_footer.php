@@ -11,8 +11,8 @@
                  <ul class="vincent_foter_menu">
                      <li><a style='color:white;' href="./index.php">Home</a></li>
                      <li><a style='color:white;' href="./discover.php">Products</a></li>
-                     <li><a style='color:white;' href="about1.html">About</a></li>
-                     <li><a style='color:white;' href="contact-multiple-maps.html">Contact</a></li>
+                     <li><a style='color:white;' href="./about.php">About</a></li>
+                     <li><a style='color:white;' href="./contact.php">Contact</a></li>
                  </ul>
                  <ul class="vincent_social">
                      <li><a style='color:white;' href="https://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>

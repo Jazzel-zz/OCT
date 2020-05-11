@@ -11,7 +11,7 @@
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,700" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel="stylesheet">
       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <title>Home 1 - Vincent</title>
+      <title>Vincent - <?php echo $page_title ?></title>
 
       <link rel="stylesheet" href="./assets/base/css/kube.css">
       <link rel="stylesheet" href="./assets/base/css/font-awesome.css">
