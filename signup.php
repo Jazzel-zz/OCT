@@ -1,55 +1,46 @@
-<?php 
+<?php
 // get database connection
 include_once 'config/database.php';
- 
+
 // instantiate user object
 include_once 'objects/user.php';
- 
+
 $database = new Database();
 $db = $database->getConnection();
- 
+
 $user = new User($db);
 
-if (isset($_POST['submit'])){
-        
-// set user property values
-$user->username = $_POST['username'];
-$user->first_name = $_POST['first_name'];
-$user->last_name = $_POST['last_name'];
-$user->email = $_POST['email'];
-$user->address = $_POST['address'];
-$user->date_of_birth = $_POST['date_of_birth'];
-$user->cell_phone = $_POST['cell_phone'];
-$user->work_phone = $_POST['work_phone'];
-$user->password = md5($_POST['password']);
- 
-// create the user
-if($user->signup()){
-    $user_arr=array(
-        "status" => true,
-        "message" => "Successfully Signup!",
-        "id" => $user->id,
-        "username" => $user->username
-    );
-        echo("<script>location.href = 'login.php';</script>");
+if (isset($_POST['submit'])) {
 
-}
-else{
-    $user_arr=array(
-        "status" => false,
-        "message" => "Username already exists!"
-    );
-}
-print_r(json_encode($user_arr));
+    // set user property values
+    $user->username = $_POST['username'];
+    $user->first_name = $_POST['first_name'];
+    $user->last_name = $_POST['last_name'];
+    $user->email = $_POST['email'];
+    $user->address = $_POST['address'];
+    $user->date_of_birth = $_POST['date_of_birth'];
+    $user->cell_phone = $_POST['cell_phone'];
+    $user->work_phone = $_POST['work_phone'];
+    $user->password = md5($_POST['password']);
+
+    // create the user
+    if ($user->signup()) {
+        $user_arr = array(
+            "status" => true,
+            "message" => "Successfully Signup!",
+            "id" => $user->id,
+            "username" => $user->username
+        );
+        echo ("<script>location.href = 'login.php';</script>");
+    } else {
+        $user_arr = array(
+            "status" => false,
+            "message" => "Username already exists!"
+        );
+    }
+    print_r(json_encode($user_arr));
 }
 ?>
-
-
-<?php
-    if(!isset($_SESSION['user_id'])){
-        include_once 'authentication.php';
-    };
-?> 
 
 
 <!DOCTYPE html>
@@ -58,31 +49,34 @@ print_r(json_encode($user_arr));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OCT - Signup</title>
+    <title>Vincent - Signup</title>
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="./assets/css/black-dashboard.css">
-  <link href="https://fonts.googleapis.com/css2?family=Acme&family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Pacifico&display=swap" rel="stylesheet">
 
     <style>
-    * {
-      font-family: 'Acme';
-    }
-    .styled-font { 
-      font-family : 'Pacifico' !important;
-    }
-    .batman{
-width:56%;
-    }
-    @media only screen and (max-width: 1024px) {
-  .batman{
-width:100%;
-    }
-    .bat_img {
-        display:none;
-    }
-}
+        * {
+            font-family: 'Acme';
+        }
 
-  </style>
+        .styled-font {
+            font-family: 'Pacifico' !important;
+        }
+
+        .batman {
+            width: 56%;
+        }
+
+        @media only screen and (max-width: 1024px) {
+            .batman {
+                width: 100%;
+            }
+
+            .bat_img {
+                display: none;
+            }
+        }
+    </style>
 
 </head>
 
@@ -96,9 +90,9 @@ width:100%;
                     <img class="bat_img ml-4" src="https://colorlib.com/etc/lf/Login_v1/images/img-01.png" alt="IMG">
                 </div>
 
-                <form class="login100-form validate-form batman" style=""  action="" name="reg" method="POST">
+                <form class="login100-form validate-form batman" style="" action="" name="reg" method="POST">
                     <span class="h1 login100-form-title">
-                    OTC - Signup
+                        Member Signup
                     </span>
 
                     <div class="row">
@@ -120,8 +114,7 @@ width:100%;
                                 </span>
                             </div>
 
-                            <div class="wrap-input100 validate-input"
-                                data-validate="Valid email is required: ex@abc.xyz">
+                            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                                 <input class="input100" type="text" name="email" placeholder="Email">
                                 <span class="focus-input100"></span>
                                 <span class="symbol-input100">
@@ -195,8 +188,7 @@ width:100%;
 
                     <div class="container-login100-form-btn">
 
-                        <input class="login100-form-btn" type="submit" name="submit" value="Register"
-                            onclick="return(submitreg());">
+                        <input class="login100-form-btn" type="submit" name="submit" value="Register" onclick="return(submitreg());">
 
                     </div>
 

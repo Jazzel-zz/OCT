@@ -19,4 +19,3 @@ if($stmt->rowCount() > 0){
     echo $row['first_name'] . ' ' . $row['last_name'] ;
 
 }
-?>
