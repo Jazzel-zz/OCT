@@ -29,6 +29,8 @@
                         if (!isset($_SESSION['user_id'])) {
                             echo '<li><a style="color:white;" href="./login.php">Login</a></li>';
                             echo '<li><a style="color:white;" href="./signup.php">Register</a></li>';
+                        } else {
+                            echo '<li><a style="color:white;" class="nav-link" href="products.php?q=logout">Logout</a></li>';
                         }
                         ?>
                     </ul>
@@ -55,7 +57,7 @@
                         $cart_count = count($_SESSION['cart']);
                         ?>
 
-                        <div class="vincent_total_price" style="padding-top:5px;">Cart</div>
+                        <div class="vincent_total_price" style="padding-top:10px;">Hello <?php include_once('./getName.php'); ?></div>
                         <div class="vincent_total_items">
                             <?php echo $cart_count; ?> items - View Cart</div>
                         <div class="vincent_cart_item_counter"><?php echo $cart_count; ?></div>

@@ -32,6 +32,7 @@ if ($_POST) {
         // storing data in sesstion
         $_SESSION['login'] = true;
         $_SESSION['user_id'] = $row['id'];
+        $_SESSION['role'] = $row['role'];
 
         // create array
         $user_arr = array(

@@ -15,7 +15,11 @@
                      <li><a style='color:white;' href="./contact.php">Contact</a></li>
                      <?php
                         if (isset($_SESSION['user_id'])) {
-                            echo '<li><a style="color:white;" href="./products.php">Go to dashboard</a></li>';
+                            if ($_SESSION['role'] == 'admin') {
+                                echo '<li><a style="color:white;" href="./products.php">Go to dashboard</a></li>';
+                            } else {
+                                echo '<li><a style="color:white;" class="nav-link" href="products.php?q=logout">Logout</a></li>';
+                            }
                         } else {
                             echo '<li><a style="color:white;" href="./login.php">Login</a></li>';
                             echo '<li><a style="color:white;" href="./signup.php">Register</a></li>';

@@ -3,7 +3,7 @@
 session_start();
 
 // remove items from the cart
-session_destroy();
+unset($_SESSION['cart']);
 
 // set page title
 $page_title = "Thank You!";
